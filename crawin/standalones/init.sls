@@ -1,0 +1,69 @@
+include:
+  - crawin.standalones.zimmerman
+  - crawin.standalones.sysinternals
+  - crawin.standalones.evtx-dump
+  - crawin.standalones.cyberchef
+#  - crawin.standalones.nirsoft
+  - crawin.standalones.eventfinder
+  - crawin.standalones.regripper
+  - crawin.standalones.usb-write-blocker
+  - crawin.standalones.ntfs-log-tracker
+  - crawin.standalones.logfileparser
+  - crawin.standalones.kape
+  - crawin.standalones.sqlitestudio
+  - crawin.standalones.autorunner
+  - crawin.standalones.sleuthkit
+  - crawin.standalones.logparser-studio
+  - crawin.standalones.kansa
+  - crawin.standalones.logviewer2
+  - crawin.standalones.officemalscanner
+  - crawin.standalones.srum-dump2
+  - crawin.standalones.pilfer
+  - crawin.standalones.vssmount
+  - crawin.standalones.silketw
+  - crawin.standalones.offvis
+  - crawin.standalones.megatools
+  - crawin.standalones.arsenal-image-mounter
+  - crawin.standalones.velociraptor
+  - crawin.standalones.winpmem
+  - crawin.standalones.magnet-edd
+  - crawin.standalones.magnet-process-capture
+  - crawin.standalones.magnet-ram-capture
+  - crawin.standalones.magnet-web-page-saver-portable
+  - crawin.standalones.psdecode
+
+crawin-standalones:
+  test.nop:
+    - require:
+      - sls: crawin.standalones.zimmerman
+      - sls: crawin.standalones.sysinternals
+      - sls: crawin.standalones.evtx-dump
+      - sls: crawin.standalones.cyberchef
+#      - sls: crawin.standalones.nirsoft
+      - sls: crawin.standalones.eventfinder
+      - sls: crawin.standalones.regripper
+      - sls: crawin.standalones.usb-write-blocker
+      - sls: crawin.standalones.ntfs-log-tracker
+      - sls: crawin.standalones.logfileparser
+      - sls: crawin.standalones.kape
+      - sls: crawin.standalones.sqlitestudio
+      - sls: crawin.standalones.autorunner
+      - sls: crawin.standalones.sleuthkit
+      - sls: crawin.standalones.logparser-studio
+      - sls: crawin.standalones.kansa
+      - sls: crawin.standalones.logviewer2
+      - sls: crawin.standalones.officemalscanner
+      - sls: crawin.standalones.srum-dump2
+      - sls: crawin.standalones.pilfer
+      - sls: crawin.standalones.vssmount
+      - sls: crawin.standalones.silketw
+      - sls: crawin.standalones.offvis
+      - sls: crawin.standalones.megatools
+      - sls: crawin.standalones.arsenal-image-mounter
+      - sls: crawin.standalones.velociraptor
+      - sls: crawin.standalones.winpmem
+      - sls: crawin.standalones.magnet-edd
+      - sls: crawin.standalones.magnet-process-capture
+      - sls: crawin.standalones.magnet-ram-capture
+      - sls: crawin.standalones.magnet-web-page-saver-portable
+      - sls: crawin.standalones.psdecode
