@@ -43,7 +43,7 @@ wsl-config-stager-customize:
 wsl-config-run-on-reboot:
   reg.present:
     - name: HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce
-    - vname: "WIN-FOR WSL Config"
+    - vname: "CRA-WIN WSL Config"
     - vtype: REG_SZ
     - vdata: 'C:\Windows\system32\cmd.exe /q /c C:\salt\tempdownload\wsl-config.cmd'
     - require:

@@ -38,6 +38,6 @@ All issues should be raised at the [CRA-WIN Salt Repo](https://github.com/digita
 Installs [Saltstack 3004.1](https://repo.saltproject.io/windows/Salt-Minion-3004.1-1-Py3-AMD64-Setup.exe) then installs 
 [Git](https://git-scm.com/download/win), then runs the following commands:
 ```
-git clone https://github.com/digitalsleuth/winfor-salt/ "C:\ProgramData\Salt Project\Salt\srv\salt"
+git clone https://github.com/digitalsleuth/crawin-salt/ "C:\ProgramData\Salt Project\Salt\srv\salt"
 salt-call -l debug --local --retcode-passthrough --state-output=mixed state.sls crawin.$mode pillar="{'crawin_user': '$user'}" --log-file="C:\crawin-saltstack.log" --log-file-level=debug --out-file="C:\crawin-saltstack.log" --out-file-append
 ```

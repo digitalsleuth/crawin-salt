@@ -14,7 +14,7 @@ wsl-config-version:
 
 wsl-get-template:
   file.managed:
-    - name: 'C:\salt\tempdownload\WIN-FOR-20.04.tar'
+    - name: 'C:\salt\tempdownload\CRA-WIN-20.04.tar'
     - source: https://sourceforge.net/projects/crawin/files/wsl/WIN-FOR-20.04.tar/download
     - source_hash: sha256={{ hash }}
     - makedirs: True
@@ -29,7 +29,7 @@ wsl-make-install-directory:
 
 wsl-import-template:
   cmd.run:
-    - name: 'wsl --import WIN-FOR C:\standalone\wsl\ C:\salt\tempdownload\WIN-FOR-20.04.tar'
+    - name: 'wsl --import CRA-WIN C:\standalone\wsl\ C:\salt\tempdownload\CRA-WIN-20.04.tar'
     - shell: cmd
     - require:
       - file: wsl-get-template

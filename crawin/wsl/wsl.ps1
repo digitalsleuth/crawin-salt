@@ -17,7 +17,7 @@ $wslFailures = (Select-String -Path $wslLogFile -Pattern 'Succeeded:' -Context 1
 if ($wslFailures -ne $null) {$wslFailures = $wslFailures.split(':')[1].Trim() }
 $errors = (Select-String -Path $wslLogFile -Pattern '          ID:' -Context 0,6 | ForEach-Object{$_.Line; $_.Context.DisplayPostContext + "`r-------------"})
 }
-Write-Host "[+] Downloading WIN-FOR template and installing SIFT & REMnux" -ForegroundColor Green
+Write-Host "[+] Downloading CRA-WIN template and installing SIFT & REMnux" -ForegroundColor Green
 Start-Process -Wait -FilePath $filePath -ArgumentList ($saltArgs) | Out-Null
 if (($repoFailures -ne 0 -and $repoFailures -ne $null) -or ($wslFailures -ne 0 -and $wslFailures -ne $null)){
     Write-Host "[!] Installation finished with errors" -ForegroundColor Yellow

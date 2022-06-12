@@ -14,4 +14,4 @@ supported_os:
     codename: 11
 saltstack:
   pillars:
-    winfor_user_template: "{{ .User }}"
+    crawin_user_template: "{{ .User }}"
