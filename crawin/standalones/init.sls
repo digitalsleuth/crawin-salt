@@ -31,6 +31,7 @@ include:
   - crawin.standalones.magnet-ram-capture
   - crawin.standalones.magnet-web-page-saver-portable
   - crawin.standalones.psdecode
+  - crawin.standalones.x-ways
 
 crawin-standalones:
   test.nop:
@@ -67,3 +68,4 @@ crawin-standalones:
       - sls: crawin.standalones.magnet-ram-capture
       - sls: crawin.standalones.magnet-web-page-saver-portable
       - sls: crawin.standalones.psdecode
+      - sls: crawin.standalones.x-ways

@@ -10,7 +10,7 @@
         Additionally, the CRA-WIN states allow for the automated installation of the Windows Subsystem for Linux v2, and comes with
         the REMnux and SIFT toolsets, making the VM a one-stop shop for forensics!
     .NOTES
-        Version        : 1.0
+        Version        : 1.1
         Author         : Corey Forman (https://github.com/digitalsleuth)
         Prerequisites  : Windows 10 1909 or later
                        : Set-ExecutionPolicy must allow for script execution
@@ -47,6 +47,8 @@
 param (
   [string]$User = "",
   [string]$Mode = "",
+  [string]$XUser = "",
+  [string]$XPass = "",
   [switch]$Update,
   [switch]$Upgrade,
   [switch]$Version,
@@ -54,7 +56,7 @@ param (
   [switch]$WslOnly,
   [switch]$Help
 )
-[string]$installerVersion = 'v2.3'
+[string]$installerVersion = 'v1.1'
 [string]$saltstackVersion = '3004.1-1'
 [string]$saltstackFile = 'Salt-Minion-' + $saltstackVersion + '-Py3-AMD64-Setup.exe'
 [string]$saltstackHash = "C1E57767B6AB19CB1F724DB6EC2232C0DD6232A53D5CCF754CCE3AE0FB25B86F"
@@ -202,6 +204,10 @@ function Install-CRAWIN {
     $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine")
     $logFile = "C:\crawin-saltstack-$installVersion.log"
     Get-crawinRelease $installVersion
+    if (($XUser -ne "") -and ($XPass -ne "")) {
+        $AuthToken = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($XUser + ":" + $XPass))
+        ((Get-Content 'C:\ProgramData\Salt Project\Salt\srv\salt\crawin\standalones\x-ways.sls') -replace "TOKENPLACEHOLDER", $AuthToken) | Set-Content 'C:\ProgramData\Salt Project\Salt\srv\salt\crawin\standalones\x-ways.sls'
+        }
     Write-Host "[+] The CRA-WIN installer command is running, configuring for user $User - this will take a while... please be patient" -ForegroundColor Green
     Start-Process -Wait -FilePath "C:\Program Files\Salt Project\Salt\salt-call.bat" -ArgumentList ("-l debug --local --retcode-passthrough --state-output=mixed state.sls crawin.$Mode pillar=`"{'crawin_user': '$User'}`" --log-file-level=debug --log-file=`"$logFile`" --out-file=`"$logFile`" --out-file-append") | Out-Null
     if (-Not (Test-Path $logFile)) {
@@ -304,6 +310,8 @@ Usage:
     -Update       Identifies the current version of CRA-WIN and re-installs all states from that version
     -Upgrade      Identifies the latest version of CRA-WIN and will install that version
     -Version      Displays the current version of CRA-WIN (if installed) then exits
+    -XUser        The Username for the X-Ways portal - Required to download and install X-Ways
+    -XPass        The Password for the X-Ways portal - Required to download and install X-Ways
     -IncludeWsl   Will install the Windows Subsystem for Linux v2 with SIFT and REMnux toolsets
                   This option assumes you also want the full CRA-WIN suite, install that first, then WSL
     -WslOnly      If you wish to only install WSLv2 with SIFT and REMnux separately, without the tools
