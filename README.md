@@ -1,5 +1,5 @@
 # CRA-WIN Salt States
-Custom Windows Forensics VM Salt States
+Customized Robust Analysis Windows Forensics VM Salt States
 
 The design behind this is to use a barebones Windows 10 VM (preferably 1909 and higher to support WSLv2).
 Once configured, and activated (to support customization features), then you can use the install.ps1 file to
@@ -23,6 +23,8 @@ Options:
     -Update       Identifies the current version of CRA-WIN and re-installs all states from that version
     -Upgrade      Identifies the latest version of CRA-WIN and will install that version
     -Version      Displays the current version of CRA-WIN (if installed) then exits
+    -XUser        The Username for the X-Ways portal - Required to download and install X-Ways
+    -XPass        The Password for the X-Ways portal - Required to download and install X-Ways - QUOTES REQUIRED
     -IncludeWsl   Will install the Windows Subsystem for Linux v2 with SIFT and REMnux toolsets
                   This option assumes you also want the full CRA-WIN suite, install that first, then WSL
     -WslOnly      If you wish to only install WSLv2 with SIFT and REMnux separately, without the tools

@@ -1,6 +1,6 @@
 ﻿ <#
     .SYNOPSIS
-        This script is used to install the Custom Windows Forensic (CRA-WIN) VM toolset into a Windows VM
+        This script is used to install the Customized Robust Analysis Windows Forensic (CRA-WIN) VM toolset into a Windows VM
         https://github.com/digitalsleuth/crawin-salt
     .DESCRIPTION
         The Windows Forensic VM comes with a multitude of tools for use in conducting digital forensics using a Windows
@@ -10,7 +10,7 @@
         Additionally, the CRA-WIN states allow for the automated installation of the Windows Subsystem for Linux v2, and comes with
         the REMnux and SIFT toolsets, making the VM a one-stop shop for forensics!
     .NOTES
-        Version        : 1.1
+        Version        : 1.2
         Author         : Corey Forman (https://github.com/digitalsleuth)
         Prerequisites  : Windows 10 1909 or later
                        : Set-ExecutionPolicy must allow for script execution
@@ -29,6 +29,10 @@
         Identifies the latest version of CRA-WIN and will install that version
     .PARAMETER Version
         Print the current version of the installed CRA-WIN environment
+    .PARAMETER XUser
+        The Username for the X-Ways portal - Required to download and install X-Ways
+    .PARAMETER XPass
+        The Password for the X-Ways portal - Required to download and install X-Ways - "QUOTES REQUIRED"
     .PARAMETER IncludeWsl
         When selected, will install the Windows Subsystem for Linux v2, and will install the SIFT and REMnux toolsets.
         This option assumes you also want the full CRA-WIN suite, and will install that first, then WSL last
@@ -37,7 +41,7 @@
         or you only want that particular feature and nothing else, this option will do just that. It will not install the CRA-WIN
         states.
     .Example
-        .\install.ps1 -User forensics -Mode dedicated -IncludeWsl
+        .\install.ps1 -User forensics -Mode dedicated -IncludeWsl -XUser forensics -XPass "password123"
         .\install.ps1 -WslOnly
         .\install.ps1 -Version
         .\install.ps1 -Update
@@ -56,7 +60,7 @@ param (
   [switch]$WslOnly,
   [switch]$Help
 )
-[string]$installerVersion = 'v1.1'
+[string]$installerVersion = 'v1.2'
 [string]$saltstackVersion = '3004.1-1'
 [string]$saltstackFile = 'Salt-Minion-' + $saltstackVersion + '-Py3-AMD64-Setup.exe'
 [string]$saltstackHash = "C1E57767B6AB19CB1F724DB6EC2232C0DD6232A53D5CCF754CCE3AE0FB25B86F"
@@ -311,7 +315,7 @@ Usage:
     -Upgrade      Identifies the latest version of CRA-WIN and will install that version
     -Version      Displays the current version of CRA-WIN (if installed) then exits
     -XUser        The Username for the X-Ways portal - Required to download and install X-Ways
-    -XPass        The Password for the X-Ways portal - Required to download and install X-Ways
+    -XPass        The Password for the X-Ways portal - Required to download and install X-Ways - QUOTES REQUIRED
     -IncludeWsl   Will install the Windows Subsystem for Linux v2 with SIFT and REMnux toolsets
                   This option assumes you also want the full CRA-WIN suite, install that first, then WSL
     -WslOnly      If you wish to only install WSLv2 with SIFT and REMnux separately, without the tools
