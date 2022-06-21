@@ -1,6 +1,7 @@
 include:
   - crawin.packages.7zip
   - crawin.packages.git
+  - crawin.packages.ms-vcpp-2015-build-tools
   - crawin.packages.autopsy
   - crawin.packages.firefox
   - crawin.packages.chrome
@@ -41,6 +42,7 @@ crawin-packages:
     - require:
       - sls: crawin.packages.7zip
       - sls: crawin.packages.git
+      - sls: crawin.packages.ms-vcpp-2015-build-tools
       - sls: crawin.packages.autopsy
       - sls: crawin.packages.firefox
       - sls: crawin.packages.chrome

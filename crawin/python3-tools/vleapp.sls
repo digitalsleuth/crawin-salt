@@ -10,6 +10,7 @@
 include:
   - crawin.packages.python3
   - crawin.packages.git
+  - crawin.packages.ms-vcpp-2015-build-tools
 
 crawin-python3-vleapp-source:
   git.latest:
@@ -28,6 +29,7 @@ crawin-python3-vleapp-requirements:
     - require:
       - git: crawin-python3-vleapp-source
       - sls: crawin.packages.python3
+      - sls: crawin.packages.ms-vcpp-2015-build-tools
 
 crawin-python3-vleapp-header:
   file.prepend:

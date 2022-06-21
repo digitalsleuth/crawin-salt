@@ -210,7 +210,7 @@ function Install-CRAWIN {
     Get-crawinRelease $installVersion
     if (($XUser -ne "") -and ($XPass -ne "")) {
         $AuthToken = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($XUser + ":" + $XPass))
-        ((Get-Content 'C:\ProgramData\Salt Project\Salt\srv\salt\crawin\standalones\x-ways.sls') -replace "TOKENPLACEHOLDER", $AuthToken) | Set-Content 'C:\ProgramData\Salt Project\Salt\srv\salt\crawin\standalones\x-ways.sls'
+        ((Get-Content 'C:\ProgramData\Salt Project\Salt\srv\salt\crawin\standalones\x-ways.sls') -replace ' = "TOKENPLACEHOLDER"', (" = "+ '"' + $AuthToken + '"')) | Set-Content 'C:\ProgramData\Salt Project\Salt\srv\salt\crawin\standalones\x-ways.sls'
         }
     Write-Host "[+] The CRA-WIN installer command is running, configuring for user $User - this will take a while... please be patient" -ForegroundColor Green
     Start-Process -Wait -FilePath "C:\Program Files\Salt Project\Salt\salt-call.bat" -ArgumentList ("-l debug --local --retcode-passthrough --state-output=mixed state.sls crawin.$Mode pillar=`"{'crawin_user': '$User'}`" --log-file-level=debug --log-file=`"$logFile`" --out-file=`"$logFile`" --out-file-append") | Out-Null
@@ -345,11 +345,11 @@ if ($WslOnly) {
     }
     Invoke-WSLInstaller
 } elseif ($Help -and $PSBoundParameters.Count -eq 1) {
-    Show-crawinHelp
+    Show-CRAWINHelp
 } elseif ($Version -and $PSBoundParameters.Count -eq 1) {
-    Get-crawinVersion
+    Get-CRAWINVersion
 } elseif ($PSBoundParameters.Count -eq 0) {
-    Invoke-crawinInstaller
+    Invoke-CRAWINInstaller
 } else {
-    Invoke-crawinInstaller
+    Invoke-CRAWINInstaller
 }
