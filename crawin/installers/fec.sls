@@ -11,5 +11,5 @@ fec-download:
 
 fec-install:
   cmd.run:
-    - name: 'C:\salt\tempdownload\FECSetup_v{{ version }}.exe /q /norestart'
+    - name: 'C:\salt\tempdownload\FECSetup_v{{ version }}.exe /qn /norestart'
     - shell: cmd
