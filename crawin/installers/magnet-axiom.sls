@@ -21,3 +21,16 @@ magnet-axiom-install:
   cmd.run:
     - name: 'C:\salt\tempdownload\AXIOM\AXIOMv{{ file_version }}setup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP- /MERGETASKS=!DESKTOPICON,!RUNCODE'
     - shell: cmd
+
+magnet-axiom-cleanup-1:
+  file.absent:
+    - name: 'C:\salt\tempdownload\AXIOM\'
+    - require:
+      - cmd: magnet-axiom-install
+
+magnet-axiom-cleanup-2:
+  file.absent:
+    - name: 'C:\salt\tempdownload\AXIOMv{{ file_version }}setup.zip'
+    - require:
+      - cmd: magnet-axiom-install
+
