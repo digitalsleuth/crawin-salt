@@ -9,7 +9,8 @@ include:
   - crawin.installers.irfanview-plugins
   - crawin.installers.fec
   - crawin.installers.magnet-axiom
-
+  - crawin.installers.nuix-evidence-mover
+  - crawin.installers.fastcopy
   
 crawin-installers:
   test.nop:
@@ -24,4 +25,5 @@ crawin-installers:
       - sls: crawin.installers.irfanview-plugins
       - sls: crawin.installers.fec
       - sls: crawin.installers.magnet-axiom
-
+      - sls: crawin.installers.nuix-evidence-mover
+      - sls: crawin.installers.fastcopy
