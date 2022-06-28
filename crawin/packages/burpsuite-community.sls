@@ -4,8 +4,8 @@
 # Category: Network
 # Author: PortSwigger
 # License: https://portswigger.net/burp/tc-community
-# Notes:
 # Version: v2022.3
+# Notes:
 
 burpsuite-community:
   pkg.installed

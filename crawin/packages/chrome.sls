@@ -4,8 +4,8 @@
 # Category: Requirements
 # Author: Google
 # License: https://policies.google.com/terms
+# Version: 103.0.5060.66
 # Notes: 
-# Version: 99.0.4844.82
 
 {% set user = salt['pillar.get']('crawin_user', 'forensics') %}
 {% set all_users = salt['user.list_users']() %}

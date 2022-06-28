@@ -36,6 +36,7 @@ include:
   - crawin.packages.magnet-acquire
   - crawin.packages.openhashtab
   - crawin.packages.irfanview
+  - crawin.packages.dbeaver
 
 crawin-packages:
   test.nop:
@@ -77,3 +78,4 @@ crawin-packages:
       - sls: crawin.packages.magnet-acquire
       - sls: crawin.packages.openhashtab
       - sls: crawin.packages.irfanview
+      - sls: crawin.packages.dbeaver

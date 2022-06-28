@@ -4,8 +4,8 @@
 # Category: Raw Parsers / Decoders
 # Author: FireEye
 # License: 
-# Notes: 
 # Version: 2.0
+# Notes: 
 
 redline-download:
   file.managed:

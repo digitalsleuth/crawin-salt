@@ -1,3 +1,12 @@
+# Name: Python 3
+# Website: https://python.org
+# Description: Python Programming Language
+# Category: Programming
+# Author: Python Software Foundation
+# License: https://docs.python.org/3.10/license.html
+# Version: 3.10.1150.0
+# Notes:
+
 python3_x64:
   pkg.installed:
     - version: '3.10.1150.0'

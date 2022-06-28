@@ -1,9 +1,10 @@
-# Name: 
-# Website: 
-# Description: 
-# Category: 
-# Author: 
+# Name: PDF Stream Dumper
+# Website: https://github.com/dzzie/pdfstreamdumper
+# Description: PDF Analysis Tool
+# Category: Document Analysis
+# Author: David Zimmer
 # License: 
+# Version: 0.9.624
 # Notes: 
 
 {% set user = salt['pillar.get']('crawin_user', 'forensics') %}

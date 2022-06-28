@@ -1,3 +1,12 @@
+# Name: Nuix Evidence Mover
+# Website: https://www.nuix.com/nuix-evidence-mover
+# Description: File Transfer tool with source and destination hashing
+# Category: File Transfer
+# Author: NUIX
+# License: https://www.oracle.com/legal/terms.html
+# Version: 6.2.1
+# Notes:
+
 {% set version = '6.2.1' %}
 {% set hash = 'C0105268D6366E36034B63422200949EDFCDAFCB235586761B6670C94EC47BF5' %}
 

@@ -4,8 +4,8 @@
 # Category: Acquisition
 # Author: Cerbero.io
 # License: 
-# Notes: 
 # Version: 5.4.2
+# Notes: 
 
 cerbero-suite:
   pkg.installed

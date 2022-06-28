@@ -1,9 +1,10 @@
-# Name: 
-# Website: 
-# Description: 
-# Category: 
-# Author: 
-# License: 
+# Name: AccessData Registry Viewer
+# Website: https://www.exterro.com
+# Description: Registry Analysis Tool
+# Category: Windows Analysis
+# Author: AccessData / Exterro
+# License: EULA
+# Version: 2.0.0.7
 # Notes: 
 
 registry-viewer:
