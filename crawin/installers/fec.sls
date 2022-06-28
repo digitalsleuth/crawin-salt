@@ -1,6 +1,6 @@
-{% set version = '3.75.1.10' %}
-{% set hash = 'EA818D135D6530732A39913B10457AF942263AC18345E4D79357DFE15E6DB5D7' %}
-{% set folder_hash = '7af53cc2b748' %}
+{% set version = '3.75.1.12' %}
+{% set hash = '02F62A581B9F972834E403136EBAFEE145549F9B8B88F70F592ABE4742128D80' %}
+{% set folder_hash = 'f9966d48eeaa' %}
 
 fec-download:
   file.managed:
