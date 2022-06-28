@@ -3,7 +3,7 @@ include:
   - crawin.standalones.sysinternals
   - crawin.standalones.evtx-dump
   - crawin.standalones.cyberchef
-#  - crawin.standalones.nirsoft
+  - crawin.standalones.nirsoft
   - crawin.standalones.eventfinder
   - crawin.standalones.regripper
   - crawin.standalones.usb-write-blocker
@@ -40,7 +40,7 @@ crawin-standalones:
       - sls: crawin.standalones.sysinternals
       - sls: crawin.standalones.evtx-dump
       - sls: crawin.standalones.cyberchef
-#      - sls: crawin.standalones.nirsoft
+      - sls: crawin.standalones.nirsoft
       - sls: crawin.standalones.eventfinder
       - sls: crawin.standalones.regripper
       - sls: crawin.standalones.usb-write-blocker
