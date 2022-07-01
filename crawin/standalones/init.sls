@@ -32,6 +32,7 @@ include:
   - crawin.standalones.magnet-web-page-saver-portable
   - crawin.standalones.psdecode
   - crawin.standalones.x-ways
+  - crawin.standalones.exiftool
 
 crawin-standalones:
   test.nop:
@@ -69,3 +70,4 @@ crawin-standalones:
       - sls: crawin.standalones.magnet-web-page-saver-portable
       - sls: crawin.standalones.psdecode
       - sls: crawin.standalones.x-ways
+      - sls: crawin.standalones.exiftool

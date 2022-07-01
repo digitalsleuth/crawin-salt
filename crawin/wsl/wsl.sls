@@ -11,6 +11,11 @@
 include:
   - crawin.config.user
 
+wsl-cleanup:
+  cmd.run:
+    - name: 'dism.exe /online /cleanup-image /revertpendingactions'
+    - shell: cmd
+
 wsl-install:
   dism.feature_installed:
     - name: Microsoft-Windows-Subsystem-Linux
