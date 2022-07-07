@@ -33,6 +33,7 @@ include:
   - crawin.standalones.psdecode
   - crawin.standalones.x-ways
   - crawin.standalones.exiftool
+  - crawin.standalones.ssview
 
 crawin-standalones:
   test.nop:
@@ -71,3 +72,4 @@ crawin-standalones:
       - sls: crawin.standalones.psdecode
       - sls: crawin.standalones.x-ways
       - sls: crawin.standalones.exiftool
+      - sls: crawin.standalones.ssview
