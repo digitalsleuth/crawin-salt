@@ -34,6 +34,7 @@ include:
   - crawin.standalones.x-ways
   - crawin.standalones.exiftool
   - crawin.standalones.ssview
+  - crawin.standalones.mftbrowser
 
 crawin-standalones:
   test.nop:
@@ -73,3 +74,4 @@ crawin-standalones:
       - sls: crawin.standalones.x-ways
       - sls: crawin.standalones.exiftool
       - sls: crawin.standalones.ssview
+      - sls: crawin.standalones.mftbrowser
