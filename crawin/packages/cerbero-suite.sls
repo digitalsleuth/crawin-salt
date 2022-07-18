@@ -4,7 +4,7 @@
 # Category: Acquisition
 # Author: Cerbero.io
 # License: 
-# Version: 5.4.2
+# Version: 5.7.0
 # Notes: 
 
 cerbero-suite:
