@@ -1,4 +1,5 @@
 include:
+  - crawin.installers.fec
   - crawin.installers.dcode
   - crawin.installers.vscode
   - crawin.installers.mobaxterm
@@ -7,7 +8,6 @@ include:
   - crawin.installers.redline
   - crawin.installers.systools-pst-viewer
   - crawin.installers.irfanview-plugins
-  - crawin.installers.fec
   - crawin.installers.magnet-axiom
   - crawin.installers.nuix-evidence-mover
   - crawin.installers.fastcopy
@@ -16,6 +16,7 @@ include:
 crawin-installers:
   test.nop:
     - require:
+      - sls: crawin.installers.fec
       - sls: crawin.installers.dcode
       - sls: crawin.installers.vscode
       - sls: crawin.installers.mobaxterm
@@ -24,7 +25,6 @@ crawin-installers:
       - sls: crawin.installers.redline
       - sls: crawin.installers.systools-pst-viewer
       - sls: crawin.installers.irfanview-plugins
-      - sls: crawin.installers.fec
       - sls: crawin.installers.magnet-axiom
       - sls: crawin.installers.nuix-evidence-mover
       - sls: crawin.installers.fastcopy
