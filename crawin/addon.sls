@@ -1,8 +1,8 @@
 include:
   - crawin.config.user
   - crawin.repos
-  - crawin.packages
   - crawin.installers
+  - crawin.packages
   - crawin.standalones
   - crawin.python2-tools
   - crawin.python3-tools
@@ -15,8 +15,8 @@ crawin-addon-version-file:
     - require:
       - sls: crawin.config.user
       - sls: crawin.repos
-      - sls: crawin.packages
       - sls: crawin.installers
+      - sls: crawin.packages
       - sls: crawin.standalones
       - sls: crawin.python2-tools
       - sls: crawin.python3-tools

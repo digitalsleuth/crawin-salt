@@ -7,5 +7,10 @@
 # Version: 2.53.0.30579
 # Notes:
 
+include:
+  - crawin.installers.dotnetfx35
+
 magnet-acquire:
-  pkg.installed
+  pkg.installed:
+    - require:
+      - sls: crawin.installers.dotnetfx35

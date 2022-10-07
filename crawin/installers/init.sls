@@ -11,7 +11,7 @@ include:
   - crawin.installers.magnet-axiom
   - crawin.installers.nuix-evidence-mover
   - crawin.installers.fastcopy
-  - crawin.installers.shadowexplorer
+#  - crawin.installers.shadowexplorer
   
 crawin-installers:
   test.nop:
@@ -28,4 +28,4 @@ crawin-installers:
       - sls: crawin.installers.magnet-axiom
       - sls: crawin.installers.nuix-evidence-mover
       - sls: crawin.installers.fastcopy
-      - sls: crawin.installers.shadowexplorer
+#      - sls: crawin.installers.shadowexplorer
