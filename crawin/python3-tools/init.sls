@@ -15,6 +15,7 @@ include:
   - crawin.python3-tools.ileapp
   - crawin.python3-tools.vleapp
   - crawin.python3-tools.time-decode
+  - crawin.python3-tools.amcache
 
 crawin-python3-tools:
   test.nop:
@@ -35,6 +36,7 @@ crawin-python3-tools:
       - sls: crawin.python3-tools.ileapp
       - sls: crawin.python3-tools.vleapp
       - sls: crawin.python3-tools.time-decode
+      - sls: crawin.python3-tools.amcache
 
 python3-filetype-association:
   cmd.run:
