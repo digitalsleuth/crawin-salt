@@ -5,7 +5,6 @@ include:
   - crawin.packages.autopsy
   - crawin.packages.firefox
   - crawin.packages.chrome
-  - crawin.packages.registry-viewer
   - crawin.packages.ftk-imager
   - crawin.packages.httplogbrowser
   - crawin.packages.db-browser-sqlite
@@ -47,7 +46,6 @@ crawin-packages:
       - sls: crawin.packages.autopsy
       - sls: crawin.packages.firefox
       - sls: crawin.packages.chrome
-      - sls: crawin.packages.registry-viewer
       - sls: crawin.packages.ftk-imager
       - sls: crawin.packages.httplogbrowser
       - sls: crawin.packages.db-browser-sqlite

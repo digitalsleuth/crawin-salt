@@ -110,11 +110,10 @@
           <start:DesktopApplicationTile Size="1x1" Column="5" Row="0" DesktopApplicationID="C:\standalone\zimmerman\ShellBagsExplorer\ShellBagsExplorer.exe" />
           <start:DesktopApplicationTile Size="1x1" Column="2" Row="1" DesktopApplicationID="C:\standalone\zimmerman\JumpListExplorer\JumpListExplorer.exe" />
           <start:DesktopApplicationTile Size="1x1" Column="1" Row="0" DesktopApplicationID="C:\standalone\regripper\rr.exe" />
-          <start:DesktopApplicationTile Size="1x1" Column="2" Row="0" DesktopApplicationID="{7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E}\AccessData\Registry Viewer\RegistryViewer.exe" />
           <start:DesktopApplicationTile Size="1x1" Column="3" Row="1" DesktopApplicationID="{7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E}\Redline\Redline.exe" />
           <start:DesktopApplicationTile Size="1x1" Column="0" Row="2" DesktopApplicationID="C:\standalone\wleapp\wleappGUI.py" />
           <start:DesktopApplicationTile Size="1x1" Column="1" Row="2" DesktopApplicationID="C:\standalone\nirsoft\NirLauncher.exe" />
-          <start:DesktopApplicationTile Size="1x1" Column="2" Row="2" DesktopApplicationID="C:\standalone\mftbrowser\MFTBrowser.exe" />
+          <start:DesktopApplicationTile Size="1x1" Column="2" Row="0" DesktopApplicationID="C:\standalone\mftbrowser\MFTBrowser.exe" />
           <start:DesktopApplicationTile Size="1x1" Column="3" Row="2" DesktopApplicationID="{7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E}\ShadowExplorer\ShadowExplorer.exe" />
         </start:Group>
       </defaultlayout:StartLayout>
