@@ -1,7 +1,6 @@
 include:
   - crawin.config.user
   - crawin.config.debloat-windows
-  - crawin.config.layout
   - crawin.config.computer-name
   - crawin.config.pdfs
   - crawin.config.del-edge-shortcut
@@ -13,7 +12,6 @@ crawin-config:
     - require:
       - sls: crawin.config.user
       - sls: crawin.config.debloat-windows
-      - sls: crawin.config.layout
       - sls: crawin.config.computer-name
       - sls: crawin.config.pdfs
       - sls: crawin.config.del-edge-shortcut

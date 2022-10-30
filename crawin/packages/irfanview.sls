@@ -7,5 +7,10 @@
 # Version: 4.59
 # Notes:
 
+include:
+  - crawin.repos
+
 irfanview:
-  pkg.installed
+  pkg.installed:
+    - require:
+      - sls: crawin.repos

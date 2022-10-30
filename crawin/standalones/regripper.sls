@@ -22,12 +22,6 @@ crawin-standalones-regripper:
     - require:
       - sls: crawin.packages.git
 
-crawin-standalones-regripper-requirements:
-  cmd.run:
-    - name: 'C:\Strawberry\perl\bin\cpanm install Parse::Win32Registry'
-    - require:
-      - sls: crawin.packages.strawberryperl
-
 regripper-env-vars:
   win_path.exists:
     - name: 'C:\standalone\regripper\'
