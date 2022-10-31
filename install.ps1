@@ -10,7 +10,7 @@
         Additionally, the CRA-WIN states allow for the automated installation of the Windows Subsystem for Linux v2, and comes with
         the REMnux and SIFT toolsets, making the VM a one-stop shop for forensics!
     .NOTES
-        Version        : 1.2
+        Version        : 1.3
         Author         : Corey Forman (https://github.com/digitalsleuth)
         Prerequisites  : Windows 10 1909 or later
                        : Set-ExecutionPolicy must allow for script execution
@@ -60,7 +60,7 @@ param (
   [switch]$WslOnly,
   [switch]$Help
 )
-[string]$installerVersion = 'v1.2'
+[string]$installerVersion = 'v1.3'
 [string]$saltstackVersion = '3004.1-1'
 [string]$saltstackFile = 'Salt-Minion-' + $saltstackVersion + '-Py3-AMD64-Setup.exe'
 [string]$saltstackHash = "C1E57767B6AB19CB1F724DB6EC2232C0DD6232A53D5CCF754CCE3AE0FB25B86F"
@@ -156,7 +156,7 @@ function Install-Git {
 function Get-CRAWINRelease($installVersion) {
     $zipFolder = 'crawin-salt-' + $installVersion.Split("v")[-1]
     Write-Host "[-] Downloading and unpacking $installVersion" -ForegroundColor Yellow
-    Start-BitsTransfer -Source https://github.com/digitalsleuth/crawin-salt/archive/refs/tags/$installVersion.zip -Destination C:\Windows\Temp
+    Start-BitsTransfer -Source https://github.com/digitalsleuth/crawin-salt/archive/refs/tags/$installVersion.zip -Destination C:\Windows\Temp -Dynamic
     Start-BitsTransfer -Source https://github.com/digitalsleuth/crawin-salt/releases/download/$installVersion/crawin-salt-$installVersion.zip.sha256 -Destination C:\Windows\Temp
     $releaseHash = (Get-Content C:\Windows\Temp\crawin-salt-$installVersion.zip.sha256).Split(" ")[0]
     Write-Host "[-] Validating hash for release file" -ForegroundColor Yellow
