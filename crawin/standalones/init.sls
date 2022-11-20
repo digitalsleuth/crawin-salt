@@ -35,6 +35,7 @@ include:
   - crawin.standalones.exiftool
   - crawin.standalones.mftbrowser
   - crawin.standalones.mitec
+  - crawin.standalones.hindsight
 
 crawin-standalones:
   test.nop:
@@ -75,3 +76,4 @@ crawin-standalones:
       - sls: crawin.standalones.exiftool
       - sls: crawin.standalones.mftbrowser
       - sls: crawin.standalones.mitec
+      - sls: crawin.standalones.hindsight
