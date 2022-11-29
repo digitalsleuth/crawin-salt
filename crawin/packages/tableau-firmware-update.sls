@@ -1,0 +1,37 @@
+{% set user = salt['pillar.get']('crawin_user', 'forensics') %}
+{% set all_users = salt['user.list_users']() %}
+{% if user in all_users %}
+  {% set home = salt['user.info'](user).home %}
+{% else %}
+{% set home = "C:\\Users\\" + user %}
+{% endif %}
+
+include:
+  - crawin.config.user
+
+tableau-certificate-copy:
+  file.managed:
+    - name: 'C:\salt\tempdownload\tableau.cer'
+    - source: salt://crawin/files/tableau.cer
+    - makedirs: True
+
+tableau-certificate-install:
+  certutil.add_store:
+    - name: 'C:\salt\tempdownload\tableau.cer'
+    - store: TrustedPublisher
+    - require:
+      - file: tableau-certificate-copy
+
+tableau-firmware-update:
+  pkg.installed:
+    - require:
+      - certutil: tableau-certificate-install
+
+tableau-firmware-update-icon-del:
+  file.absent:
+    - names:
+      - '{{ home }}\Desktop\Tableau Firmware Update.lnk'
+      - 'C:\Users\Public\Desktop\Tableau Firmware Update.lnk'
+    - require:
+      - pkg: tableau-firmware-update
+      - user: crawin-user-{{ user }}

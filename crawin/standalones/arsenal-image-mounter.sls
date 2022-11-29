@@ -12,7 +12,6 @@
 
 include:
   - crawin.standalones.megatools
-  - crawin.packages.dotnet6-desktop-runtime
 
 arsenal-remove-previous:
   file.absent:
@@ -36,7 +35,6 @@ arsenal-extract:
     - require:
       - sls: crawin.standalones.megatools
       - cmd: arsenal-download
-      - sls: crawin.packages.dotnet6-desktop-runtime
 
 arsenal-folder-rename:
   file.rename:

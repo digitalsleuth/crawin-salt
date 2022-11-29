@@ -1,6 +1,7 @@
 include:
   - crawin.packages.7zip
   - crawin.packages.git
+  - crawin.packages.dotnet6-desktop-runtime
   - crawin.packages.ms-vcpp-2015-build-tools
   - crawin.packages.autopsy
   - crawin.packages.firefox
@@ -38,12 +39,15 @@ include:
   - crawin.packages.dbeaver
   - crawin.packages.shadowexplorer
   - crawin.packages.hashcheck
+  - crawin.packages.tableau-imager
+  - crawin.packages.tableau-firmware-update
 
 crawin-packages:
   test.nop:
     - require:
       - sls: crawin.packages.7zip
       - sls: crawin.packages.git
+      - sls: crawin.packages.dotnet6-desktop-runtime
       - sls: crawin.packages.ms-vcpp-2015-build-tools
       - sls: crawin.packages.autopsy
       - sls: crawin.packages.firefox
@@ -81,3 +85,5 @@ crawin-packages:
       - sls: crawin.packages.dbeaver
       - sls: crawin.packages.shadowexplorer
       - sls: crawin.packages.hashcheck
+      - sls: crawin.packages.tableau-imager
+      - sls: crawin.packages.tableau-firmware-update

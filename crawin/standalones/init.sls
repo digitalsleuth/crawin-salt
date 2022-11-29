@@ -36,6 +36,9 @@ include:
   - crawin.standalones.mftbrowser
   - crawin.standalones.mitec
   - crawin.standalones.hindsight
+  - crawin.standalones.iphone-analyzer
+  - crawin.standalones.rufus
+  - crawin.standalones.windowgrid
 
 crawin-standalones:
   test.nop:
@@ -77,3 +80,7 @@ crawin-standalones:
       - sls: crawin.standalones.mftbrowser
       - sls: crawin.standalones.mitec
       - sls: crawin.standalones.hindsight
+      - sls: crawin.standalones.iphone-analyzer
+      - sls: crawin.standalones.rufus
+      - sls: crawin.standalones.windowgrid
+
