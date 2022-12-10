@@ -10,8 +10,9 @@ include:
 
 crawin-addon-version-file:
   file.managed:
-    - name: 'C:\ProgramData\Salt Project\Salt\srv\salt\crawin-version'
+    - name: 'C:\crawin-version'
     - source: salt://crawin/VERSION
+    - replace: True
     - require:
       - sls: crawin.config.user
       - sls: crawin.repos

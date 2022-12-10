@@ -1,10 +1,10 @@
-# Name: Free Hex Editor Neo
-# Website: https://www.hhdsoftware.com/free-hex-editor
+# Name: Hex Editor Neo (Free)
+# Website: https://www.hhdsoftware.com
 # Description: Hex Editor
 # Category: Raw Parsers / Decoders
 # Author: HHD Software
-# License: Terms Of Use - https://www.hhdsoftware.com/company/terms-of-use
-# Version: 7.01.00.7839
+# License: EULA (https://www.hhdsoftware.com/company/terms-of-use)
+# Version: 7.09.01.8132
 # Notes: 
 
 {% set user = salt['pillar.get']('crawin_user', 'forensics') %}

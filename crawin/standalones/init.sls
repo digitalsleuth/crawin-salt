@@ -10,7 +10,6 @@ include:
   - crawin.standalones.ntfs-log-tracker
   - crawin.standalones.logfileparser
   - crawin.standalones.kape
-  - crawin.standalones.sqlitestudio
   - crawin.standalones.autorunner
   - crawin.standalones.sleuthkit
   - crawin.standalones.logparser-studio
@@ -54,7 +53,6 @@ crawin-standalones:
       - sls: crawin.standalones.ntfs-log-tracker
       - sls: crawin.standalones.logfileparser
       - sls: crawin.standalones.kape
-      - sls: crawin.standalones.sqlitestudio
       - sls: crawin.standalones.autorunner
       - sls: crawin.standalones.sleuthkit
       - sls: crawin.standalones.logparser-studio

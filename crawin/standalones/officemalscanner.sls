@@ -1,9 +1,10 @@
-# Name: 
-# Website: 
-# Description: 
-# Category: 
-# Author: 
-# License: 
+# Name: OfficeMalScanner
+# Website: http://www.reconstructer.org/main.html
+# Description: Office Document analysis tool to detect implants and malware
+# Category: Document Analysis
+# Author: Frank Boldewin
+# License: Unknown
+# Version: 0.62
 # Notes: 
 
 officemalscanner-download:

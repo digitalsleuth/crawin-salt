@@ -1,10 +1,10 @@
 # Name: Cerbero Suite
 # Website: https://cerbero.io
 # Description: Application Analysis for Reverse Engineering
-# Category: Acquisition
+# Category: Acquisition and Analysis
 # Author: Cerbero.io
 # License: 
-# Version: 5.7.0
+# Version: 6.1.1
 # Notes: 
 
 cerbero-suite:

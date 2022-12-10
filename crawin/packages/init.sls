@@ -1,7 +1,9 @@
 include:
   - crawin.packages.7zip
   - crawin.packages.git
+  - crawin.packages.dotnetfx35
   - crawin.packages.dotnet6-desktop-runtime
+  - crawin.packages.vscode
   - crawin.packages.ms-vcpp-2015-build-tools
   - crawin.packages.autopsy
   - crawin.packages.firefox
@@ -37,6 +39,7 @@ include:
   - crawin.packages.openhashtab
   - crawin.packages.irfanview
   - crawin.packages.dbeaver
+  - crawin.packages.sqlitestudio
   - crawin.packages.shadowexplorer
   - crawin.packages.hashcheck
   - crawin.packages.tableau-imager
@@ -47,7 +50,9 @@ crawin-packages:
     - require:
       - sls: crawin.packages.7zip
       - sls: crawin.packages.git
+      - sls: crawin.packages.dotnetfx35
       - sls: crawin.packages.dotnet6-desktop-runtime
+      - sls: crawin.packages.vscode
       - sls: crawin.packages.ms-vcpp-2015-build-tools
       - sls: crawin.packages.autopsy
       - sls: crawin.packages.firefox
@@ -83,6 +88,7 @@ crawin-packages:
       - sls: crawin.packages.openhashtab
       - sls: crawin.packages.irfanview
       - sls: crawin.packages.dbeaver
+      - sls: crawin.packages.sqlitestudio
       - sls: crawin.packages.shadowexplorer
       - sls: crawin.packages.hashcheck
       - sls: crawin.packages.tableau-imager

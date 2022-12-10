@@ -4,7 +4,7 @@
 # Category: Document Viewers
 # Author: LibreOffice - The Document Foundation
 # License: https://www.libreoffice.org/about-us/licenses
-# Version: 7.3.4
+# Version: 7.4.3
 # Notes: 
 
 libreoffice:

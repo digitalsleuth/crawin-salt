@@ -1,6 +1,6 @@
-#{% set hash = '22243006EA2EAD213A20A6679A154CCD9A9373BA08F60DEA1512D4AAB9A3638C' %}
 {% set colour = 'blue' %}
 {% set hash = '8dc64081e005748722849327bd983e459df2ee073f8627a7a0c6b32716973763' %}
+{% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
 
 crawin-theme-wallpaper-source:
   file.managed:

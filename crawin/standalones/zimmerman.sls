@@ -1,9 +1,10 @@
 # Name: Zimmerman Tools
 # Website: https://ericzimmerman.github.io
-# Description: Forensic Toolset
+# Description: Suite of Forensic Tools
 # Category: Windows Analysis
 # Author: Eric Zimmerman
-# License: 
+# License: MIT License (https://github.com/EricZimmerman/Issues/blob/master/LICENSE)
+# Version: 2021-01-22
 # Notes: 
 
 {% set hash = '7864ce0ab57e3831bad24f56abc1c9c6796a552091d2f49262e66565e66c0447' %}
@@ -35,12 +36,12 @@ zimmerman-env-vars:
     - names:
       - 'C:\standalone\zimmerman\net6\'
       - 'C:\standalone\zimmerman\net6\EvtxeCmd\'
-      - 'C:\standalone\zimmerman\net6\RegistryExplorer\'
       - 'C:\standalone\zimmerman\net6\RECmd\'
+      - 'C:\standalone\zimmerman\net6\RegistryExplorer\'
       - 'C:\standalone\zimmerman\net6\ShellBagsExplorer\'
-      - 'C:\standalone\zimmerman\net6\SDBExplorer\'
       - 'C:\standalone\zimmerman\net6\SQLECmd\'
       - 'C:\standalone\zimmerman\net6\iisGeolocate\'
+      - 'C:\standalone\zimmerman\net6\SDBExplorer\'
 
 {% for application in applications %}
 zimmerman-{{ application }}-shortcut:

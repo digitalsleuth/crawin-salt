@@ -4,13 +4,8 @@
 # Category: Acquisition and Analysis
 # Author: Jad Saliba - Magnet Forensics
 # License: EULA
-# Version: 2.53.0.30579
+# Version: 2.58.0.32373
 # Notes:
 
-include:
-  - crawin.installers.dotnetfx35
-
 magnet-acquire:
-  pkg.installed:
-    - require:
-      - sls: crawin.installers.dotnetfx35
+  pkg.installed

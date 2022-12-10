@@ -1,10 +1,12 @@
-# Name: 
-# Website: 
-# Description: 
-# Category: 
-# Author: 
-# License: 
+# Name: VLEAPP
+# Website: https://github.com/abrignoni/vleapp
+# Description: Vehicle Logs Events and Properties Parser
+# Category: Mobile Analysis
+# Author: Alexis Brignoni
+# License: MIT License (https://github.com/abrignoni/VLEAPP/blob/main/LICENSE)
+# Version: 1.0.0
 # Notes: 
+
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
 
 include:
@@ -29,7 +31,6 @@ crawin-python3-vleapp-requirements:
     - require:
       - git: crawin-python3-vleapp-source
       - sls: crawin.packages.python3
-      - sls: crawin.packages.ms-vcpp-2015-build-tools
 
 crawin-python3-vleapp-header:
   file.prepend:

@@ -1,16 +1,17 @@
-# Name: 
-# Website: 
-# Description: 
-# Category: 
-# Author: 
-# License: 
+# Name: ILEAPP
+# Website: https://github.com/abrignoni/ileapp
+# Description: iOS Logs Events and Plists Parser
+# Category: Mobile Analysis
+# Author: Alexis Brignoni
+# License: MIT License (https://github.com/abrignoni/iLEAPP/blob/master/LICENSE)
+# Version: 1.18.1
 # Notes: 
+
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
 
 include:
   - crawin.packages.python3
   - crawin.packages.git
-  - crawin.packages.ms-vcpp-2015-build-tools
 
 crawin-python3-ileapp-source:
   git.latest:
@@ -30,7 +31,6 @@ crawin-python3-ileapp-requirements:
     - require:
       - git: crawin-python3-ileapp-source
       - sls: crawin.packages.python3
-      - sls: crawin.packages.ms-vcpp-2015-build-tools
 
 crawin-python3-ileapp-header:
   file.prepend:

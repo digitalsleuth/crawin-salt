@@ -2,7 +2,7 @@
 # Website: https://www.passware.com
 # Description: Encryption Analysis tool
 # Category: Raw Parsers / Decoders
-# Author: Passware Inc
+# Author: Passware - Dmitry Sumin
 # License: EULA - https://www.passware.com/files/Passware-EULA.pdf
 # Version: 2022.3.1.3215
 # Notes: 

@@ -3,7 +3,7 @@
 # Description: PDF Analysis Tool
 # Category: Document Analysis
 # Author: David Zimmer
-# License: 
+# License: None
 # Version: 0.9.624
 # Notes: 
 

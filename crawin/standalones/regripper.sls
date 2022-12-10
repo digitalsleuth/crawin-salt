@@ -1,16 +1,16 @@
 # Name: regripper
 # Website: https://github.com/keydet89/RegRipper3.0
 # Description: Registry parsing toolsuite
-# Category: 
+# Category: Windows Analysis
 # Author: Harlan Carvey
 # License: MIT License (https://github.com/keydet89/RegRipper3.0/blob/master/license.md)
+# Version: 3.0
 # Notes: rr.exe
 
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
 
 include:
   - crawin.packages.git
-  - crawin.packages.strawberryperl
 
 crawin-standalones-regripper:
   git.latest:

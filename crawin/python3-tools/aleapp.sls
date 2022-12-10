@@ -1,16 +1,17 @@
-# Name: 
-# Website: 
-# Description: 
-# Category: 
-# Author: 
-# License: 
+# Name: ALEAPP
+# Website: https://github.com/abrignoni/aleapp
+# Description: Android Logs Events and Protobuf Parser
+# Category: Mobile Analysis
+# Author: Alexis Brignoni
+# License: MIT License (https://github.com/abrignoni/ALEAPP/blob/master/LICENSE)
+# Version: 3.1.1
 # Notes: 
+
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
 
 include:
   - crawin.packages.python3
   - crawin.packages.git
-  - crawin.packages.ms-vcpp-2015-build-tools
 
 crawin-python3-aleapp-source:
   git.latest:
@@ -29,7 +30,6 @@ crawin-python3-aleapp-requirements:
     - require:
       - git: crawin-python3-aleapp-source
       - sls: crawin.packages.python3
-      - sls: crawin.packages.ms-vcpp-2015-build-tools
 
 crawin-python3-aleapp-header:
   file.prepend:

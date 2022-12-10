@@ -1,10 +1,10 @@
 # Name: Strawberry Perl
 # Website: https://strawberryperl.com
-# Description: Perl programming language for Windows
-# Category: Programming
+# Description: Perl programming language environment for Windows
+# Category: Requirements
 # Author: Strawberry Perl
-# License: https://github.com/StrawberryPerl/Perl-Dist-Strawberry/blob/master/LICENSE
-# Version: 5.32.1001
+# License: GNU General Public License 1+ (license found within software)
+# Version: 5.32.1.1
 # Notes: 
 
 strawberryperl_x64:

@@ -3,7 +3,7 @@
 # Description: SQL MDF Viewer
 # Category: Databases
 # Author: SysTools Group
-# License: EULA - https://www.systoolsgroup.com/eula.pdf
+# License: EULA (https://www.systoolsgroup.com/eula.html)
 # Version: 11.0
 # Notes: 
 

@@ -1,6 +1,6 @@
 # Name: VcXsrv Windows X Server
 # Website: https://sourceforge.net/projects/vcxsrv/
-# Description: Windows X-Server
+# Description: Windows X-Server for interacting with X-Windows environments
 # Category: Utilities
 # Author: Marha
 # License: GNU General Public License v3

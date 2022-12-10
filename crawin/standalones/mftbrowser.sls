@@ -1,23 +1,22 @@
-{% set version = 'v.0.0.66.0' %}
-{% set hash = 'BC2CD203EB943AD7ABDDC8158C66D18DA0734FC2F4A32EF0DE65790D94AB278E' %}
-{% set confighash = '85110db9b863a6b3688e63c92f104267c323c5fd1bd74a9b16e119f502db5081' %}
+# Name: MFT Browser
+# Website: https://github.com/kacos2000/MFT_Browser
+# Description: Graphical MFT Browser utility
+# Category: Windows Analysis
+# Author: Costas K.                                              
+# License: MIT License (https://github.com/kacos2000/MFT_Browser/blob/master/LICENSE)   
+# Version: 0.0.68.0
+# Notes:
+
+{% set version = '0.0.68.0' %}
+{% set hash = '31FBAEC90F1ECEE69825DB27E7D99E3C7A9D0BDF731F0058D7EFF9CA0602A47F' %}
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
 
 mftbrowser-download:
   file.managed:
     - name: 'C:\standalone\mftbrowser\MFTBrowser.exe'
-    - source: https://github.com/kacos2000/MFT_Browser/releases/download/{{ version }}/MFTBrowser.exe
+    - source: https://github.com/kacos2000/MFT_Browser/releases/download/v.{{ version }}/MFTBrowser.exe
     - source_hash: sha256={{ hash }}
     - makedirs: True
-
-mftbrowser-config-download:
-  file.managed:
-    - name: 'C:\standalone\mftbrowser\MFTBrowser.exe.config'
-    - source: https://github.com/kacos2000/MFT_Browser/releases/download/{{ version }}/MFTBrowser.exe.config
-    - source_hash: sha256={{ confighash }}
-    - makedirs: True
-    - require:
-      - file: mftbrowser-download
 
 crawin-standalones-mftbrowser-shortcut:
   file.shortcut:

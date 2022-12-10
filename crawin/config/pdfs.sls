@@ -1,4 +1,14 @@
-# Source: https://github.com/teamdfir/sift-saltstack/blob/master/sift/config/user/pdfs.sls
+# Name: Reference Documentation
+# Website: SANS.org and github.com/digitalsleuth/crawin-salt
+# Description: Reference documents for tools and forensic cheatsheets
+# Category: Utilities
+# Author: SANS and Corey Forman
+# License: 
+# Version: 
+# Notes: Source https://github.com/teamdfir/sift-saltstack/blob/master/sift/config/user/pdfs.sls and WIN-FOR tool list
+
+{% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
+
 {%-
 set pdfs = [
   {
@@ -73,15 +83,29 @@ set pdfs = [
     "source": "https://assets.contentstack.io/v3/assets/blt36c2e63521272fdc/blt4698e96e2d9cf51d/SQlite_Cheat_Sheet.pdf",
     "hash": "954d62787abe3bad95f59e2d671eac202dea2607ed5cdb757dbbb688b873f679"
   },
+  {
+    "id": "crawin-tool-list",
+    "filename": "CRA-WIN-Tool-List.pdf",
+    "source": "salt://crawin/files/CRA-WIN-Tool-List.pdf",
+    "hash": "e92211595df018a2193fc2ecac48172bc628e0da50a6b031339574f7f682726a"
+  },
 ]
 -%}
 
 {% for pdf in pdfs %}
 crawin-pdf-{{ pdf.id }}:
   file.managed:
-    - name: 'C:\standalone\References\{{ pdf.filename }}'
+    - name: 'C:\standalone\references\{{ pdf.filename }}'
     - source: {{ pdf.source }}
     - source_hash: sha256={{ pdf.hash }}
     - makedirs: True
     - show_changes: False
 {% endfor %}
+
+crawin-tool-list-shortcut:
+  file.shortcut:
+    - name: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\CRA-WIN-Tool-List.lnk'
+    - target: 'C:\standalone\references\CRA-WIN-Tool-List.pdf'
+    - force: True
+    - working_dir: 'C:\standalone\references\'
+    - makedirs: True
