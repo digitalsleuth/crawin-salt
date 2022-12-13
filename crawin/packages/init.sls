@@ -40,7 +40,6 @@ include:
   - crawin.packages.irfanview
   - crawin.packages.dbeaver
   - crawin.packages.sqlitestudio
-  - crawin.packages.shadowexplorer
   - crawin.packages.hashcheck
   - crawin.packages.tableau-imager
   - crawin.packages.tableau-firmware-update
@@ -89,7 +88,6 @@ crawin-packages:
       - sls: crawin.packages.irfanview
       - sls: crawin.packages.dbeaver
       - sls: crawin.packages.sqlitestudio
-      - sls: crawin.packages.shadowexplorer
       - sls: crawin.packages.hashcheck
       - sls: crawin.packages.tableau-imager
       - sls: crawin.packages.tableau-firmware-update
