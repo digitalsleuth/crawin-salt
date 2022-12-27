@@ -38,6 +38,7 @@ include:
   - crawin.standalones.iphone-analyzer
   - crawin.standalones.rufus
   - crawin.standalones.windowgrid
+  - crawin.standalones.shadowexplorer
 
 crawin-standalones:
   test.nop:
@@ -81,4 +82,4 @@ crawin-standalones:
       - sls: crawin.standalones.iphone-analyzer
       - sls: crawin.standalones.rufus
       - sls: crawin.standalones.windowgrid
-
+      - sls: crawin.standalones.shadowexplorer

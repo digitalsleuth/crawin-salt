@@ -10,7 +10,7 @@
         Additionally, the CRA-WIN states allow for the automated installation of the Windows Subsystem for Linux v2, and comes with
         the REMnux and SIFT toolsets, making CRA-WIN a one-stop shop for forensics!
     .NOTES
-        Version        : 2.0
+        Version        : 3.0
         Author         : Corey Forman (https://github.com/digitalsleuth)
         Prerequisites  : Windows 10 1909 or later
                        : Set-ExecutionPolicy must allow for script execution
@@ -44,7 +44,8 @@
         or you only want that particular feature and nothing else, this option will do just that. It will not install the CRA-WIN
         states.
     .Example
-        crawin-cli -Install -User forensics -Mode dedicated -IncludeWsl -XUser forensics -XPass "password123"
+        crawin-cli -Install -User forensics -Mode dedicated -IncludeWsl -XUser forensics -XPass "<your_password>"
+        crawin-cli -Install -StandalonesPath "C:\standalones"
         crawin-cli -Install
         crawin-cli -WslOnly
         crawin-cli -Version
@@ -57,6 +58,7 @@ param (
   [string]$Mode = "",
   [string]$XUser = "",
   [string]$XPass = "",
+  [string]$StandalonesPath = "",
   [switch]$Install,
   [switch]$Update,
   [switch]$Upgrade,
@@ -65,7 +67,7 @@ param (
   [switch]$WslOnly,
   [switch]$Help
 )
-[string]$installerVersion = 'v2.0'
+[string]$installerVersion = 'v3.0'
 [string]$saltstackVersion = '3005.1-3'
 [string]$saltstackFile = 'Salt-Minion-' + $saltstackVersion + '-Py3-AMD64-Setup.exe'
 [string]$saltstackHash = "9899DE61DF2782BCA8A896EB814BF2EA0E92C0B18BF91F7C747B60EBF1EBF72D"
@@ -218,6 +220,11 @@ function Install-CRAWIN {
         Write-Host "[!] The only valid modes are 'addon' or 'dedicated'." -ForegroundColor Red
         exit 1
     }
+    if ($StandalonesPath -eq "") {
+        $StandalonesPath = "C:\standalone"
+        } else {
+        $StandalonesPath = $StandalonesPath.TrimEnd('\')
+        }
     if ($Update) {
        if(-Not (Test-Path $versionFile)) {
            $crawinVersion = 'not installed'
@@ -259,7 +266,7 @@ function Install-CRAWIN {
         ((Get-Content 'C:\ProgramData\Salt Project\Salt\srv\salt\crawin\standalones\x-ways.sls') -replace ' = "TOKENPLACEHOLDER"', (" = "+ '"' + $AuthToken + '"')) | Set-Content 'C:\ProgramData\Salt Project\Salt\srv\salt\crawin\standalones\x-ways.sls'
         }
     Write-Host "[+] The CRA-WIN installer command is running, configuring for user $User - this will take a while... please be patient" -ForegroundColor Green
-    Start-Process -Wait -FilePath "C:\Program Files\Salt Project\Salt\salt-call.bat" -ArgumentList ("-l debug --local --retcode-passthrough --state-output=mixed state.sls crawin.$Mode pillar=`"{'crawin_user': '$User'}`" --log-file-level=debug --log-file=`"$logFile`" --out-file=`"$logFile`" --out-file-append") | Out-Null
+    Start-Process -Wait -FilePath "C:\Program Files\Salt Project\Salt\salt-call.bat" -ArgumentList ("-l debug --local --retcode-passthrough --state-output=mixed state.sls crawin.$Mode pillar=`"{'crawin_user': '$User', 'inpath': '$StandalonesPath'}`" --log-file-level=debug --log-file=`"$logFile`" --out-file=`"$logFile`" --out-file-append") | Out-Null
     if (-Not (Test-Path $logFile)) {
         $results=$failures=$errors=$null
 	} else {
@@ -281,14 +288,19 @@ function Install-CRAWIN {
         if ($results) {
             $results | Out-File "C:\crawin-results-$installVersion.log" -Append
             }
-        Invoke-WSLInstaller
+        Invoke-WSLInstaller -User $User -StandalonesPath $StandalonesPath
     }
 }
 
-function Invoke-WSLInstaller {
+function Invoke-WSLInstaller($User, $StandalonesPath) {
     if ($User -eq "") {
         $User = [System.Environment]::UserName
     }
+    if ($StandalonesPath -eq "") {
+        $StandalonesPath = "C:\standalone"
+        } else {
+        $StandalonesPath = $StandalonesPath.TrimEnd('\')
+        }
     $runningUser = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
     if (-not $runningUser.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
         Write-Host "[!] Not running as administrator, please re-run this script as Administrator" -ForegroundColor Red
@@ -308,7 +320,7 @@ function Invoke-WSLInstaller {
 	} ElseIf ([System.Environment]::OSVersion.Version.Build -ge 15063) {
         Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" -Name "SecurityHealth" -ErrorAction SilentlyContinue
     }
-    Add-MpPreference -ExclusionPath "C:\standalone\wsl"
+    Add-MpPreference -ExclusionPath "$StandalonesPath\wsl"
     $wslLogFile = "C:\crawin-wsl.log"
     $wslErrorLog = "C:\crawin-wsl-errors.log"
     if (-Not (Test-Path "C:\ProgramData\Salt Project\Salt\srv\salt\crawin")) {
@@ -320,7 +332,7 @@ function Invoke-WSLInstaller {
     Write-Host "[+] Preparing for WSLv2 Installation" -ForegroundColor Green
     Write-Host "[-] This will process will automatically reboot the system and continue on the next login" -ForegroundColor Yellow
     Start-Process -Wait -FilePath "C:\Program Files\Salt Project\Salt\salt-call.bat" -ArgumentList ("-l debug --local --retcode-passthrough --state-output=mixed state.sls crawin.repos pillar=`"{'crawin_user': '$User'}`" --log-file-level=debug --log-file=`"$wslLogFile`" --out-file=`"$wslLogFile`" --out-file-append") | Out-Null
-    Start-Process -Wait -FilePath "C:\Program Files\Salt Project\Salt\salt-call.bat" -ArgumentList ("-l debug --local --retcode-passthrough --state-output=mixed state.sls crawin.wsl pillar=`"{'crawin_user': '$User'}`" --log-file-level=debug --log-file=`"$wslLogFile`" --out-file=`"$wslLogFile`" --out-file-append") | Out-Null
+    Start-Process -Wait -FilePath "C:\Program Files\Salt Project\Salt\salt-call.bat" -ArgumentList ("-l debug --local --retcode-passthrough --state-output=mixed state.sls crawin.wsl pillar=`"{'crawin_user': '$User', 'inpath': '$StandalonesPath'}`" --log-file-level=debug --log-file=`"$wslLogFile`" --out-file=`"$wslLogFile`" --out-file-append") | Out-Null
     ### If the above is successful, the following lines have no effect, as a reboot will have occurred.
     ### However, if they are not successful, the following will log the errors in a separate file for examination.
     $wslErrors = (Select-String -Path $wslLogFile -Pattern '          ID:' -Context 0,6 | ForEach-Object{$_.Line; $_.Context.DisplayPostContext + "`r-------------"})
@@ -333,19 +345,20 @@ function Show-CRAWINHelp {
     Write-Host -ForegroundColor Yellow @"
 Windows Forensics Environment (CRA-WIN) Installer $installerVersion
 Usage:
-    -Install      Installs the CRA-WIN environment
-    -User <user>  Choose the desired username for which to configure the installation
-    -Mode <mode>  There are two modes to choose from for the installation:
-                  addon: Install all of the tools, but don't do any customization
-                  dedicated: Assumes you want the full meal-deal, will install all packages and customization
-    -Update       Identifies the current version of CRA-WIN and re-installs all states from that version
-    -Upgrade      Identifies the latest version of CRA-WIN and will install that version
-    -Version      Displays the current version of CRA-WIN (if installed) then exits
-    -XUser        The Username for the X-Ways portal - Required to download and install X-Ways
-    -XPass        The Password for the X-Ways portal - Required to download and install X-Ways - USE QUOTES
-    -IncludeWsl   Will install the Windows Subsystem for Linux v2 with SIFT and REMnux toolsets
-                  This option assumes you also want the full CRA-WIN suite, install that first, then WSL
-    -WslOnly      If you wish to only install WSLv2 with SIFT and REMnux separately, without the tools
+    -Install          Installs the CRA-WIN environment
+    -User <user>      Choose the desired username for which to configure the installation
+    -Mode <mode>      There are two modes to choose from for the installation:
+                      addon: Install all of the tools, but don't do any customization
+                      dedicated: Assumes you want the full meal-deal, will install all packages and customization
+    -StandalonesPath  Choose the path for where the standalone executables will be downloaded
+    -Update           Identifies the current version of CRA-WIN and re-installs all states from that version
+    -Upgrade          Identifies the latest version of CRA-WIN and will install that version
+    -Version          Displays the current version of CRA-WIN (if installed) then exits
+    -XUser            The Username for the X-Ways portal - Required to download and install X-Ways
+    -XPass            The Password for the X-Ways portal - Required to download and install X-Ways - USE QUOTES
+    -IncludeWsl       Will install the Windows Subsystem for Linux v2 with SIFT and REMnux toolsets
+                      This option assumes you also want the full CRA-WIN suite, install that first, then WSL
+    -WslOnly          If you wish to only install WSLv2 with SIFT and REMnux separately, without the tools
 "@
 }
 
@@ -370,7 +383,7 @@ if ($WslOnly) {
         Write-Host "[-] Git not installed" -ForegroundColor Yellow
         Get-Git
     }
-    Invoke-WSLInstaller
+    Invoke-WSLInstaller $User $StandalonesPath
 } elseif ($Help -and $PSBoundParameters.Count -eq 1) {
     Show-CRAWINHelp
 } elseif ($Version -and $PSBoundParameters.Count -eq 1) {
@@ -384,8 +397,8 @@ if ($WslOnly) {
 # SIG # Begin signature block
 # MIIbvAYJKoZIhvcNAQcCoIIbrTCCG6kCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU+a8/QZystvdXpFGn+kH28FTa
-# jAWgghYnMIIDHDCCAgSgAwIBAgIQcv98vmCQa6hHnZia/ZugPTANBgkqhkiG9w0B
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUmw8+eYZ8JHR3CBUraORygugC
+# d8egghYnMIIDHDCCAgSgAwIBAgIQcv98vmCQa6hHnZia/ZugPTANBgkqhkiG9w0B
 # AQsFADAmMSQwIgYDVQQDDBtEaWdpdGFsIFNsZXV0aCBBdXRoZW50aWNvZGUwHhcN
 # MjIxMjA5MTQwNTI5WhcNMjMxMjA5MTQyNTI5WjAmMSQwIgYDVQQDDBtEaWdpdGFs
 # IFNsZXV0aCBBdXRoZW50aWNvZGUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
@@ -507,27 +520,27 @@ if ($WslOnly) {
 # bGV1dGggQXV0aGVudGljb2RlAhBy/3y+YJBrqEedmJr9m6A9MAkGBSsOAwIaBQCg
 # eDAYBgorBgEEAYI3AgEMMQowCKACgAChAoAAMBkGCSqGSIb3DQEJAzEMBgorBgEE
 # AYI3AgEEMBwGCisGAQQBgjcCAQsxDjAMBgorBgEEAYI3AgEVMCMGCSqGSIb3DQEJ
-# BDEWBBSH5D3c7x6cwof6dZ9Hlc4HzkI61zANBgkqhkiG9w0BAQEFAASCAQAyI9Pv
-# rdsIphqQXGl+PtPW+fBeCPAGUmV3RR21CwFEJaDRM26XILQQARThj6+XR0JXR0NN
-# Yx/V+8XXfErJaHdmvfV9vd0Txv/EZfWjGrJM5YsgNWfnncj0ebFQUN2UW//IcOa9
-# A2INiYqAo8QoAnYCA2/efitF5L3n5l8fR2vx8eWtLxiCAZiZzGgF1gEtXjILPkLL
-# USIIxvg1GbaK1cmwo+djoXnwFnKz/yltHb4bizSIZ/NfEXuoSRov1dWzAarxkxIM
-# 2pyzGmC+2Vmqhcg9ZKfqJ8cxmVlAayJI8APYnMHmnuJnJzLWBLOEE/VSQiPs0b/z
-# ZlU0obawlnDPZmGGoYIDIDCCAxwGCSqGSIb3DQEJBjGCAw0wggMJAgEBMHcwYzEL
+# BDEWBBQauo8IrNBQvMv6KsC5bQiCT5FBIjANBgkqhkiG9w0BAQEFAASCAQBj8g3C
+# GRj8PCOCyuZZ7+KlL249GzhB9hy+zZ41CF/Lgu6U0yutdSbltPxhmbvtyny0sLFj
+# 1ZjipbHyJ1ivmFfZZ3LsXc/tVB6XRO4N/4K4ZIXp7mRMCOnFDVz9oaxBWKqSPzu3
+# eXg0fm8U4synOHmNFXyNsXT8AXQnwuHjBujlKO8WarDe2O8N+7nh+OZc5y6JgYow
+# xUlpuIGKU6pUH4AOCwFWaFHA2tayxexytiv9l2NdhMGzGVjSfzviTs1mm6HkoqqX
+# A7SElpbmSZD0IZhBD7+t1H7XGSlt4pfB3sFQgE3lA7dCOB5fgXTtWRMIF4b/BwnB
+# dJrcBT1FiVeEHiEGoYIDIDCCAxwGCSqGSIb3DQEJBjGCAw0wggMJAgEBMHcwYzEL
 # MAkGA1UEBhMCVVMxFzAVBgNVBAoTDkRpZ2lDZXJ0LCBJbmMuMTswOQYDVQQDEzJE
 # aWdpQ2VydCBUcnVzdGVkIEc0IFJTQTQwOTYgU0hBMjU2IFRpbWVTdGFtcGluZyBD
 # QQIQDE1pckuU+jwqSj0pB4A9WjANBglghkgBZQMEAgEFAKBpMBgGCSqGSIb3DQEJ
-# AzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIyMTIxMDIxMDMxNFowLwYJ
-# KoZIhvcNAQkEMSIEIKm8Oy4uluaq2tnI7q/jjFYo9eC+1WsTy1Uk/15XmqXPMA0G
-# CSqGSIb3DQEBAQUABIICAJPGs8o4hz876FNR1T/YpX5rnNUimK7OPQyC1E5B5AWV
-# ROFqFO5o41x0RasDhhIQx/sJRE6F9zWIr8etDMYMoM2V50sZmyDKqSNQ37IMJXif
-# DHnKHh3lxfwiTIn27ykzcRvRrrLZauiHqWitGlRneyAKpA1O4ILu77W//wElLZZD
-# hI+6a9JfGC8wzIJuIuAiUTGy+CsiqetLxeMSKAws8Y7VHgojSb9RKXiP4ilzw/uN
-# As6JZ52iKW0jon0WXZlkQ15dvWf8m+lgT+G083cZZz2oeTS+JEKAnJQ4TxZZdzj9
-# cVR4Cql47RLjmR1ozjMBJKkN/bCQarNEfNQu+zEXCIMarEkDejJxoi2T0IBGZ/fW
-# wlJY7AGnN0NLue1il7AEvL6yNIp+fs98y4L+JyyNRUSgYAhrKpxl32P3M3hngg37
-# n69zH29KT2SbOxAkTrijIKuGoFXZWSxY073z1ftJhz4Tivgxr90pm8iLD8+OWgSa
-# q3FPETd4cDeVsr4SvC8tEk4FsVWexKC+Npxnz29tCKftTEh2C65lduJzxCfsPmZ7
-# h0La6c2lqTpcvzmaEk0eVG7Fy6Db0xa8XDg9UZ+iyp9Xr5/6JliZyFUE5BWcpruN
-# yVeSwW/1CODVUoPr+iMXPXQoT26T0nWGeScqr4VgVukHhgkiiC9//5x33M6TQzcm
+# AzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIyMTIyNzE0NTAwM1owLwYJ
+# KoZIhvcNAQkEMSIEIGMjc0aZCG50EL79/468ngn9UETjcKpoQwzJ3rz3gl2AMA0G
+# CSqGSIb3DQEBAQUABIICAMvqHXXMuKsN0p5SxWUk8sY4krR8xXJ9wInkzy4+RJjX
+# 4RHhbBervvp73eW5LK7EEg04L8D7WQJw3ZxD7z0s+7Q9N3RBx+azIEkBLELA0dZP
+# vB4LEmN1GygZVzFwKGXNlF8anwkKKp7j0k6pXPB8hnuyT1IKPCGFdgi4VFZzbAcO
+# fIM7N9qykoW+OoRn+q+btlIYFLJncBHpoZNtoIX+vys7nHXa8WDrARQ9uue9I0pb
+# h6pCbnh5MaFd4j9QZErjrRjpFIuU4h2P4yrAoAOtrYG1htGw/bQ5QNz9Qkk8jtvH
+# g2XvlWZA4Wyz3XtX9znY3mSs6tt8uC5Xuj3/e7B3V9ob4cFh8FPRds32X6tBg/mA
+# z47D5bsiPNm/Qf+QMh/jSWroF64s9W3TbKtA4FZ7k/VI9lSx3q85Cl4dS93QBfQJ
+# 8xk2T1yjIPKgK6rk1FeM0ZjvsH8dPlX0gCkmhlTFYgKs/C7Q9hM6SDjiFISa/a5L
+# TFdsAgk771I0vsjPFJ362SGiE8zyYHomCEUAy05cva4BCX2tgAQSHepPNSmzI+HV
+# OO86z5WAH6RYtpM1Apwa86OGOMx9i/ygu5ucOCE+Zqgw6y/Lx5TAsfELN5Xc84TT
+# EpaPRoJHE4pmd/Ahr2ANIRbXOTtvZ7zylhLDXHhBotq6rtfIKMyIFatK7e1pmfNw
 # SIG # End signature block

@@ -1,3 +1,5 @@
+{% set inpath = salt['pillar.get']('inpath', 'C:\standalone') %}
+
 {% if grains['osrelease'] == "11" %}
 
 Skipping Start Layout on Windows 11:
@@ -7,25 +9,33 @@ Skipping Start Layout on Windows 11:
 
 start-layout-file:
   file.managed:
-    - name: 'C:\standalone\CRA-WIN-StartLayout.xml'
+    - name: '{{ inpath }}\CRA-WIN-StartLayout.xml'
     - source: salt://crawin/config/layout/CRA-WIN-StartLayout.xml
     - win_inheritance: True
     - makedirs: True
+
+start-layout-replace-placeholder:
+  file.replace:
+    - name: '{{ inpath }}\CRA-WIN-StartLayout.xml'
+    - pattern: PLACEHOLDER_PATH
+    - repl: {{ inpath | regex_escape }}
+    - require:
+      - file: start-layout-file
 
 start-layout-enable-gpo:
   lgpo.set:
     - user_policy:
         "Start Menu and Taskbar\\Start Layout":
           "Start Layout File": 
-             'C:\standalone\CRA-WIN-StartLayout.xml'
+             '{{ inpath }}\CRA-WIN-StartLayout.xml'
     - computer_policy:
         "Start Menu and Taskbar\\Start Layout":
           "Start Layout File": 
-             'C:\standalone\CRA-WIN-StartLayout.xml'
+             '{{ inpath }}\CRA-WIN-StartLayout.xml'
 
 disable-locked-start-stager:
   file.managed:
-    - name: 'C:\standalone\disable-locked-start.cmd'
+    - name: '{{ inpath }}\disable-locked-start.cmd'
     - source: salt://crawin/config/layout/disable-locked-start.cmd
     - win_inheritance: True
     - makedirs: True
@@ -35,7 +45,7 @@ disable-locked-start-layout-on-reboot-hkcu:
     - name: HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce
     - vname: "Disable Locked Start Layout"
     - vtype: REG_SZ
-    - vdata: 'C:\Windows\system32\cmd.exe /q /c C:\standalone\disable-locked-start.cmd'
+    - vdata: 'C:\Windows\system32\cmd.exe /q /c {{ inpath }}\disable-locked-start.cmd'
     - require:
       - lgpo: start-layout-enable-gpo
       - file: disable-locked-start-stager
@@ -45,7 +55,7 @@ disable-locked-start-layout-on-reboot-hklm:
     - name: HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce
     - vname: "Disable Locked Start Layout"
     - vtype: REG_SZ
-    - vdata: 'C:\Windows\system32\cmd.exe /q /c C:\standalone\disable-locked-start.cmd'
+    - vdata: 'C:\Windows\system32\cmd.exe /q /c {{ inpath }}\disable-locked-start.cmd'
     - require:
       - lgpo: start-layout-enable-gpo
       - file: disable-locked-start-stager

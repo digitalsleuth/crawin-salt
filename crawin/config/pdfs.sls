@@ -7,6 +7,7 @@
 # Version: 
 # Notes: Source https://github.com/teamdfir/sift-saltstack/blob/master/sift/config/user/pdfs.sls and WIN-FOR tool list
 
+{% set inpath = salt['pillar.get']('inpath', 'C:\standalone') %}
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
 
 {%-
@@ -87,7 +88,7 @@ set pdfs = [
     "id": "crawin-tool-list",
     "filename": "CRA-WIN-Tool-List.pdf",
     "source": "salt://crawin/files/CRA-WIN-Tool-List.pdf",
-    "hash": "e92211595df018a2193fc2ecac48172bc628e0da50a6b031339574f7f682726a"
+    "hash": "cb7d065e205020439862bc6aeebd8765d43eb0933adae245a87c8e45b9f6185c"
   },
 ]
 -%}
@@ -95,7 +96,7 @@ set pdfs = [
 {% for pdf in pdfs %}
 crawin-pdf-{{ pdf.id }}:
   file.managed:
-    - name: 'C:\standalone\references\{{ pdf.filename }}'
+    - name: '{{ inpath }}\references\{{ pdf.filename }}'
     - source: {{ pdf.source }}
     - source_hash: sha256={{ pdf.hash }}
     - makedirs: True
@@ -105,7 +106,7 @@ crawin-pdf-{{ pdf.id }}:
 crawin-tool-list-shortcut:
   file.shortcut:
     - name: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\CRA-WIN-Tool-List.lnk'
-    - target: 'C:\standalone\references\CRA-WIN-Tool-List.pdf'
+    - target: '{{ inpath }}\references\CRA-WIN-Tool-List.pdf'
     - force: True
-    - working_dir: 'C:\standalone\references\'
+    - working_dir: '{{ inpath }}\references\'
     - makedirs: True
