@@ -1,5 +1,5 @@
-{% set inpath = salt['pillar.get']('inpath', 'C:\standalone') %}
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
+{% set inpath = salt['pillar.get']('inpath', 'C:\standalone') %}
 {% set hash = '4ed521a6f727c2a5352b2d28e28cfd8639e9c8cbc1b7a35aa7e003464c4fc139' %}
 
 include:
@@ -13,6 +13,13 @@ wsl-config-version:
     - require:
       - sls: crawin.wsl.wsl2-update
 
+{% if salt['file.file_exists']('C:\\salt\\tempdownload\\WIN-FOR-20.04.tar') and salt['file.check_hash']('C:\\salt\\tempdownload\\WIN-FOR-20.04.tar', hash)%}
+
+wsl-template-already-downloaded:
+  test.nop
+
+{% else %}
+
 wsl-get-template:
   file.managed:
     - name: 'C:\salt\tempdownload\CRA-WIN-20.04.tar'
@@ -20,20 +27,19 @@ wsl-get-template:
     - source_hash: sha256={{ hash }}
     - makedirs: True
 
+{% endif %}
+
 wsl-make-install-directory:
   file.directory:
     - name: '{{ inpath }}\wsl\'
     - win_inheritance: True
     - makedirs: True
-    - require:
-      - file: wsl-get-template
 
 wsl-import-template:
   cmd.run:
     - name: 'wsl --import CRA-WIN {{ inpath }}\wsl\ C:\salt\tempdownload\CRA-WIN-20.04.tar'
     - shell: cmd
     - require:
-      - file: wsl-get-template
       - file: wsl-make-install-directory
 
 wsl-get-sift:
@@ -94,6 +100,5 @@ crawin-wsl-shortcut:
     - makedirs: True
     - require:
       - cmd: wsl-config-version
-      - file: wsl-get-template
       - file: wsl-make-install-directory
       - cmd: wsl-import-template
