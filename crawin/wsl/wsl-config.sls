@@ -13,7 +13,7 @@ wsl-config-version:
     - require:
       - sls: crawin.wsl.wsl2-update
 
-{% if salt['file.file_exists']('C:\\salt\\tempdownload\\WIN-FOR-20.04.tar') and salt['file.check_hash']('C:\\salt\\tempdownload\\WIN-FOR-20.04.tar', hash)%}
+{% if salt['file.file_exists']('C:\\salt\\tempdownload\\CRA-WIN-20.04.tar') and salt['file.check_hash']('C:\\salt\\tempdownload\\CRA-WIN-20.04.tar', hash)%}
 
 wsl-template-already-downloaded:
   test.nop

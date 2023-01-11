@@ -56,7 +56,7 @@ wsl-config-stager-customize-path:
     - require:
       - file: wsl-config-stager
       - file: wsl-config-stager-customize
-      - user: winfor-user-{{ user }}
+      - user: crawin-user-{{ user }}
 
 wsl-config-run-on-reboot:
   reg.present:
