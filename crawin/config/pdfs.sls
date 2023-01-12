@@ -88,7 +88,7 @@ set pdfs = [
     "id": "crawin-tool-list",
     "filename": "CRA-WIN-Tool-List.pdf",
     "source": "salt://crawin/files/CRA-WIN-Tool-List.pdf",
-    "hash": "38c4d12cb6338e1c6fc502a991dee8cb693966e337d6426858fb53fb884933a4"
+    "hash": "993db289402414784fad4ca07af23e79cb57be790c53287331f29be27bab9b0c"
   },
 ]
 -%}
