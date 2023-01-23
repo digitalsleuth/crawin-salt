@@ -30,10 +30,6 @@
 include:
   - crawin.packages.portals
   - crawin.config.user
-  - crawin.standalones
-  - crawin.packages
-  - crawin.python3-tools
-  - crawin.installers
 
 crawin-theme-wallpaper-source:
   file.managed:
