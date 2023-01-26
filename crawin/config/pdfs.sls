@@ -84,12 +84,6 @@ set pdfs = [
     "source": "https://assets.contentstack.io/v3/assets/blt36c2e63521272fdc/blt4698e96e2d9cf51d/SQlite_Cheat_Sheet.pdf",
     "hash": "954d62787abe3bad95f59e2d671eac202dea2607ed5cdb757dbbb688b873f679"
   },
-  {
-    "id": "crawin-tool-list",
-    "filename": "CRA-WIN-Tool-List.pdf",
-    "source": "salt://crawin/files/CRA-WIN-Tool-List.pdf",
-    "hash": "74276da72a064add5ca49acb24bc55b072f3d19480c75edc088da1949055cb6b"
-  },
 ]
 -%}
 
@@ -103,6 +97,14 @@ crawin-pdf-{{ pdf.id }}:
     - show_changes: False
 {% endfor %}
 
+crawin-pdf-tool-list:
+  file.managed:
+    - name: '{{ inpath }}\references\CRA-WIN-Tool-List.pdf'
+    - source: salt://crawin/files/CRA-WIN-Tool-List.pdf
+    - skip_verify: True
+    - makedirs: True
+    - show_changes: False
+
 crawin-tool-list-shortcut:
   file.shortcut:
     - name: '{{ PROGRAMDATA }}\Microsoft\Windows\Start Menu\Programs\CRA-WIN-Tool-List.lnk'
@@ -110,3 +112,5 @@ crawin-tool-list-shortcut:
     - force: True
     - working_dir: '{{ inpath }}\references\'
     - makedirs: True
+    - require:
+      - file: crawin-pdf-tool-list
