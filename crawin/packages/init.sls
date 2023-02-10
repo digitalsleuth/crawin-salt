@@ -43,6 +43,7 @@ include:
   - crawin.packages.hashcheck
   - crawin.packages.tableau-imager
   - crawin.packages.tableau-firmware-update
+  - crawin.packages.monolith-notes
 
 crawin-packages:
   test.nop:
@@ -91,3 +92,5 @@ crawin-packages:
       - sls: crawin.packages.hashcheck
       - sls: crawin.packages.tableau-imager
       - sls: crawin.packages.tableau-firmware-update
+      - sls: crawin.packages.monolith-notes
+
