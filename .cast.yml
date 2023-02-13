@@ -4,16 +4,20 @@ release:
     repo: crawin-salt
 manifest:
   version: 2
-  base: ""
+  name: crawin
+  base_dir: crawin
   modes:
     - name: addon
       state: crawin.addon
-      default: true
     - name: dedicated
       state: crawin.dedicated
-      default: false
+      default: true
   supported_os:
     - id: windows
       release: 10
     - id: windows
       release: 11
+  saltstack:
+    pillars:
+      crawin_user_template: "{{ .User }}"
+      inpath_template: '{{ default "C:\standalones" .inpath }}'

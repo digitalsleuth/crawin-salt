@@ -8,8 +8,6 @@
 {% set PROGRAMDATA = salt['environ.get']('PROGRAMDATA') %}
 {% set START_MENU = PROGRAMDATA + '\Microsoft\Windows\Start Menu\Programs' %}
 {% set inpath = salt['pillar.get']('inpath', 'C:\standalone') %}
-{% set hash = '8dc64081e005748722849327bd983e459df2ee073f8627a7a0c6b32716973763' %}
-{% set colour = 'blue' %}
 {% set portals_configs = ['portals.ptl','globalsettings.ptl'] %}
 {% set shortcuts = [('Acquisition and Analysis', ['FTK Imager','Active@ Disk Editor\Active@ Disk Editor','Arsenal Image Mounter','Autopsy\Autopsy 4.20.0','Magnet AXIOM\AXIOM Examine','Magnet AXIOM\AXIOM Process','Cerbero Suite\Cerbero Suite','gkape','Magnet ACQUIRE\Magnet ACQUIRE','Magnet Chromebook Acquisition Assistant v1\Magnet Chromebook Acquisition Assistant v1','Tableau\Tableau Imager\Tableau Imager','X-Ways']),
                     ('Browsers', ['Firefox','Google Chrome','Microsoft Edge']),
@@ -33,9 +31,9 @@ include:
 
 crawin-theme-wallpaper-source:
   file.managed:
-    - name: '{{ inpath }}\crawin-wallpaper-{{ colour }}.png'
-    - source: salt://crawin/theme/crawin-wallpaper-{{ colour }}.png
-    - source_hash: sha256={{ hash }}
+    - name: '{{ inpath }}\crawin-wallpaper.png'
+    - source: salt://crawin/theme/crawin-wallpaper.png
+    - skip_verify: True
     - makedirs: True
     - win_inheritance: True
 
@@ -51,7 +49,7 @@ crawin-theme-set-wallpaper:
     - name: HKEY_CURRENT_USER\Control Panel\Desktop
     - vname: WallPaper
     - vtype: REG_SZ
-    - vdata: '{{ inpath }}\crawin-wallpaper-{{ colour }}.png'
+    - vdata: '{{ inpath }}\crawin-wallpaper.png'
 
 crawin-theme-set-wallpaper-center:
   reg.present:
