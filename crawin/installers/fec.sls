@@ -4,21 +4,21 @@
 # Category: Email
 # Author: Arman Gungor - Metaspike
 # License: 
-# Version: 3.81.1.0
+# Version: 3.86.0.21
 # Notes:
 
-{% set version = '3.81.1.0' %}
-{% set hash = '0e9346f4f49ec72fc579e499dfbd8639ce9752ba159c3e1f04056118e10534b5' %}
-{% set folder_hash = 'd4af798a97ee' %}
+{% set version = '3.86.0.21' %}
+{% set hash = '26e1324fbfeefad72a9fbb0f8ad051391053989b6f59a60b7b21ef8150c67253' %}
+{% set folder_hash = '85ffc408551a' %}
 
 fec-download:
   file.managed:
-    - name: 'C:\salt\tempdownload\FECSetup_v{{ version }}.exe'
-    - source: https://storage.googleapis.com/fec-downloads/FEC/{{ version }}_{{ folder_hash }}/FECSetup_v{{ version }}.exe
+    - name: 'C:\salt\tempdownload\FECSetup_v{{ version }}.msi'
+    - source: https://storage.googleapis.com/fec-downloads/FEC/{{ version }}_{{ folder_hash }}/FECSetup_v{{ version }}.msi
     - source_hash: sha256={{ hash }}
     - makedirs: True
 
 fec-install:
   cmd.run:
-    - name: 'C:\salt\tempdownload\FECSetup_v{{ version }}.exe /q /norestart'
+    - name: 'msiexec /i C:\salt\tempdownload\FECSetup_v{{ version }}.msi /qn /norestart'
     - shell: cmd
