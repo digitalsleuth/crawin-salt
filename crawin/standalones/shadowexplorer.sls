@@ -19,7 +19,7 @@ shadow-explorer-download:
 
 shadow-explorer-extract:
   archive.extracted:
-    - name: '{{ inpath }}\shadowexplorer\'
+    - name: '{{ inpath }}\'
     - source: 'C:\salt\tempdownload\ShadowExplorer-0.9-portable.zip'
     - enforce_toplevel: False
     - require:
