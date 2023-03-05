@@ -16,6 +16,7 @@ include:
   - crawin.python3-tools.vleapp
   - crawin.python3-tools.time-decode
   - crawin.python3-tools.amcache
+  - crawin.python3-tools.usn-journal-parser
 
 crawin-python3-tools:
   test.nop:
@@ -37,6 +38,7 @@ crawin-python3-tools:
       - sls: crawin.python3-tools.vleapp
       - sls: crawin.python3-tools.time-decode
       - sls: crawin.python3-tools.amcache
+      - sls: crawin.python3-tools.usn-journal-parser
 
 python3-filetype-association:
   cmd.run:
