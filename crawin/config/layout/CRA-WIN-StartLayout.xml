@@ -48,6 +48,7 @@
           <start:DesktopApplicationTile Size="1x1" Column="3" Row="0" DesktopApplicationID="{6D809377-6AF0-444B-8957-A3773F02200E}\SysTools Outlook PST Viewer\SysTools Outlook PST Viewer.exe" />
           <start:DesktopApplicationTile Size="1x1" Column="2" Row="0" DesktopApplicationID="{7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E}\Kernel Outlook PST Viewer\Kernel Outlook PST Viewer.exe" />
           <start:DesktopApplicationTile Size="1x1" Column="0" Row="0" DesktopApplicationID="{7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E}\Kernel Exchange EDB Viewer\KernelExchangeEDBViewer.exe" />
+          <start:DesktopApplicationTile Size="1x1" Column="5" Row="0" DesktopApplicationID="{7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E}\PST Walker\pstwalker.exe" />
         </start:Group>
         <start:Group Name="Log Parsers">
           <start:DesktopApplicationTile Size="1x1" Column="1" Row="0" DesktopApplicationID="PLACEHOLDER_PATH\eventfinder\EventFinder.exe" />
