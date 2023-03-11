@@ -44,6 +44,7 @@ include:
   - crawin.packages.tableau-imager
   - crawin.packages.tableau-firmware-update
   - crawin.packages.monolith-notes
+  - crawin.packages.pst-walker
 
 crawin-packages:
   test.nop:
@@ -93,4 +94,4 @@ crawin-packages:
       - sls: crawin.packages.tableau-imager
       - sls: crawin.packages.tableau-firmware-update
       - sls: crawin.packages.monolith-notes
-
+      - sls: crawin.packages.pst-walker
