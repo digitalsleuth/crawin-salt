@@ -1,7 +1,7 @@
 # CRA-WIN Salt States
 Customized Robust Analysis Windows Forensics Environment Salt States
 
-The design behind this is to use a barebones Windows 10 machine or VM(preferably 1909 and higher to support WSLv2).
+The design behind this is to use a barebones Windows 10 machine or VM (preferably 1909 and higher to support WSLv2).
 Once configured, and activated (to support customization features), then you can use the installer to
 install all of the packages.
 
