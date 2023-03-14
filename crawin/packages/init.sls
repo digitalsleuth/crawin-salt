@@ -14,7 +14,7 @@ include:
   - crawin.packages.bulk-extractor
   - crawin.packages.vs-community-2022
   - crawin.packages.vcxsrv
-#  - crawin.packages.libreoffice  Temporarily disable until online repo comes back up
+  - crawin.packages.libreoffice
   - crawin.packages.npp
   - crawin.packages.adobereader
   - crawin.packages.python3
@@ -45,6 +45,7 @@ include:
   - crawin.packages.tableau-firmware-update
   - crawin.packages.monolith-notes
   - crawin.packages.pst-walker
+  - crawin.packages.nuix-evidence-mover
 
 crawin-packages:
   test.nop:
@@ -64,7 +65,7 @@ crawin-packages:
       - sls: crawin.packages.bulk-extractor
       - sls: crawin.packages.vs-community-2022
       - sls: crawin.packages.vcxsrv
-#      - sls: crawin.packages.libreoffice
+      - sls: crawin.packages.libreoffice
       - sls: crawin.packages.npp
       - sls: crawin.packages.adobereader
       - sls: crawin.packages.python3
@@ -95,3 +96,4 @@ crawin-packages:
       - sls: crawin.packages.tableau-firmware-update
       - sls: crawin.packages.monolith-notes
       - sls: crawin.packages.pst-walker
+      - sls: crawin.packages.nuix-evidence.mover

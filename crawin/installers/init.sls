@@ -4,11 +4,9 @@ include:
   - crawin.installers.mobaxterm
   - crawin.installers.data-dump
   - crawin.installers.hxd
-  - crawin.installers.redline
   - crawin.installers.systools-pst-viewer
   - crawin.installers.irfanview-plugins
   - crawin.installers.magnet-axiom
-  - crawin.installers.nuix-evidence-mover
   - crawin.installers.fastcopy
   - crawin.installers.jre8
   
@@ -20,10 +18,8 @@ crawin-installers:
       - sls: crawin.installers.mobaxterm
       - sls: crawin.installers.data-dump
       - sls: crawin.installers.hxd
-      - sls: crawin.installers.redline
       - sls: crawin.installers.systools-pst-viewer
       - sls: crawin.installers.irfanview-plugins
       - sls: crawin.installers.magnet-axiom
-      - sls: crawin.installers.nuix-evidence-mover
       - sls: crawin.installers.fastcopy
       - sls: crawin.installers.jre8
