@@ -11,6 +11,7 @@
 
 include:
   - crawin.packages.git
+  - crawin.packages.python3
 
 bitsparser-clone:
   git.latest:
@@ -28,6 +29,7 @@ bitsparser-requirements:
     - bin_env: 'C:\Program Files\Python310\python.exe'
     - require:
       - git: bitsparser-clone
+      - sls: crawin.packages.python3
 
 bitsparser-setup:
   win_path.exists:

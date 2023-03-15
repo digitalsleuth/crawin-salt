@@ -7,7 +7,11 @@
 # Version: 5.0.0
 # Notes: 
 
+include:
+  - crawin.packages.python3
+
 msoffcrypto-tool:
   pip.installed:
     - bin_env: 'C:\Program Files\Python310\python.exe'
-
+    - require:
+      - sls: crawin.packages.python3

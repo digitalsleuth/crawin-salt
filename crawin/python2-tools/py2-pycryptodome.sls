@@ -9,6 +9,7 @@
 
 include:
   - crawin.packages.vcforpython27
+  - crawin.packages.python2
 
 py2-pycryptodome:
   pip.installed:
@@ -16,3 +17,4 @@ py2-pycryptodome:
     - bin_env: 'C:\Python27\python.exe'
     - require:
       - sls: crawin.packages.vcforpython27
+      - sls: crawin.packages.python2

@@ -7,6 +7,11 @@
 # Version: 0.46
 # Notes: 
 
+include:
+  - crawin.packages.python3
+
 olefile:
   pip.installed:
     - bin_env: 'C:\Program Files\Python310\python.exe'
+    - require:
+      - sls: crawin.packages.python3

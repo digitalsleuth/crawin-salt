@@ -12,6 +12,7 @@
 include:
   - crawin.standalones.sleuthkit
   - crawin.python2-tools.volatility2
+  - crawin.packages.python3
 
 autotimeliner-download:
   file.managed:
@@ -31,6 +32,7 @@ autotimeliner-env:
     - count: 1
     - require:
       - file: autotimeliner-download
+      - sls: crawin.packages.python3
 
 autotimeliner-vol-bin:
   file.replace:

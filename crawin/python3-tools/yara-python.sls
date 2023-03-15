@@ -9,9 +9,11 @@
 
 include:
   - crawin.packages.ms-vcpp-2015-build-tools
+  - crawin.packages.python3
 
 yara-python:
   pip.installed:
     - bin_env: 'C:\Program Files\Python310\python.exe'
     - require:
       - sls: crawin.packages.ms-vcpp-2015-build-tools
+      - sls: crawin.packages.python3
