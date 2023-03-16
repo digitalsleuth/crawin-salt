@@ -41,6 +41,7 @@ include:
   - crawin.standalones.shadowexplorer
   - crawin.standalones.mimikatz
   - crawin.standalones.magnet-response
+  - crawin.standalones.hayabusa
 
 crawin-standalones:
   test.nop:
@@ -87,3 +88,4 @@ crawin-standalones:
       - sls: crawin.standalones.shadowexplorer
       - sls: crawin.standalones.mimikatz
       - sls: crawin.standalones.magnet-response
+      - sls: crawin.standalones.hayabusa
