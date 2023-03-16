@@ -40,6 +40,7 @@ include:
   - crawin.standalones.windowgrid
   - crawin.standalones.shadowexplorer
   - crawin.standalones.mimikatz
+  - crawin.standalones.magnet-response
 
 crawin-standalones:
   test.nop:
@@ -85,3 +86,4 @@ crawin-standalones:
       - sls: crawin.standalones.windowgrid
       - sls: crawin.standalones.shadowexplorer
       - sls: crawin.standalones.mimikatz
+      - sls: crawin.standalones.magnet-response
